@@ -27,7 +27,8 @@ public class FirstCode : MonoBehaviour
         {
             isThrown = true;
             arrow.SetActive(false);        
-            ballRigidbody.AddForce( arrow.transform.forward * throwForce );            
+            ballRigidbody.AddForce( arrow.transform.forward * throwForce );
+            Invoke("EndThrow", 20);
         }
 
         if ( ballTransform.position.x > -0.45f)
@@ -50,11 +51,14 @@ public class FirstCode : MonoBehaviour
 
 
     void OnTriggerEnter(Collider other)
-    {     
-        Debug.Log("Something enter the trigger");
-        
-        gameObject.SetActive(false);
+    {
+        Invoke("EndThrow", 5);
+    }
 
+    void EndThrow()
+    {
+        FindAnyObjectByType<GameManager>().CalculateScore();
+        Destroy(gameObject);
     }
 
 }
