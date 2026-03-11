@@ -1813,6 +1813,8 @@ MonoBehaviour:
   - {fileID: 1147576740}
   - {fileID: 1232966873}
   score: 0
+  throwCounter: 0
+  frameCounter: 0
 --- !u!1001 &1424053041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2353,11 +2355,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 585664478224721315, guid: 3489a5a97b172834e827247c705b1e7d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 585664478224721315, guid: 3489a5a97b172834e827247c705b1e7d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.395
+      value: -0.39499998
       objectReference: {fileID: 0}
     - target: {fileID: 585664478224721315, guid: 3489a5a97b172834e827247c705b1e7d, type: 3}
       propertyPath: m_LocalRotation.w
