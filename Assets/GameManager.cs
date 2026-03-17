@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -6,12 +7,17 @@ public class GameManager : MonoBehaviour
 
     public Pin[] allPins;
     public int score;
+    public int totalScore;
     public int throwCounter;
     public int frameCounter;
+
+    public GameObject gameOverScreen;
+    public TextMeshProUGUI totalScoreText;
 
     void Start()
     {
         Instantiate(ballPrefab);
+        
     }
 
     void Update()
@@ -54,6 +60,13 @@ public class GameManager : MonoBehaviour
             ResetPins();
             throwCounter = 0;
             frameCounter += 1;
+            totalScore += score;
+        }
+
+        if(frameCounter == 10)
+        {
+            gameOverScreen.SetActive(true);
+            totalScoreText.text = totalScore.ToString();
         }
 
         Instantiate(ballPrefab);
@@ -69,7 +82,5 @@ public class GameManager : MonoBehaviour
             x.transform.eulerAngles = Vector3.zero;
         }
     }
-
-
 
 }
