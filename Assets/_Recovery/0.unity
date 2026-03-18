@@ -2839,7 +2839,7 @@ MonoBehaviour:
   throwCounter: 0
   frameCounter: 0
   gameOverScreen: {fileID: 1114205930}
-  totalScoreText: {fileID: 0}
+  totalScoreText: {fileID: 1603634745}
 --- !u!1001 &1424053041
 PrefabInstance:
   m_ObjectHideFlags: 0
