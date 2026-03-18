@@ -14,10 +14,22 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverScreen;
     public TextMeshProUGUI totalScoreText;
 
+    public UIFrame[] allUIFrames;
+
+
+    
     void Start()
     {
         Instantiate(ballPrefab);
-        
+
+        int temporaryNumber = 1;
+
+        foreach(UIFrame ui in allUIFrames)
+        {
+            ui.frameNumberTitle.text = temporaryNumber.ToString();
+            temporaryNumber += 1;
+
+        }
     }
 
     void Update()
@@ -27,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     public void CalculateScore()
     {
+        int firstThrowScore = score;
         score = 0;
 
         throwCounter +=  1;
@@ -41,26 +54,47 @@ public class GameManager : MonoBehaviour
             }
         }
 
+
+        if(throwCounter == 1)
+        {
+            allUIFrames[frameCounter].firstThrowScore.text = score.ToString();
+        }
+
+        if(throwCounter == 2)
+        {
+            allUIFrames[frameCounter].secondThrowScore.text = (score - firstThrowScore).ToString();
+        }
+
         if(score == 10)
         {
             if (throwCounter == 2)
             {
                 Debug.Log("SPARE!");
+                allUIFrames[frameCounter].secondThrowScore.text = "/";
             }
 
             if (throwCounter == 1)
             {
                 Debug.Log("STRIKE!");
+                allUIFrames[frameCounter].firstThrowScore.text = "";
+;               allUIFrames[frameCounter].secondThrowScore.text = "X";
                 throwCounter = 2;
             }
         }
 
+
+
         if(throwCounter == 2)
         {
-            ResetPins();
-            throwCounter = 0;
-            frameCounter += 1;
             totalScore += score;
+
+            allUIFrames[frameCounter].currentTotalScore.text = totalScore.ToString();
+
+            ResetPins();
+
+            throwCounter = 0;
+
+            frameCounter += 1;
         }
 
         if(frameCounter == 10)
@@ -77,6 +111,8 @@ public class GameManager : MonoBehaviour
     {
         foreach(Pin x in allPins)
         {
+            x.isKnockedDown = false;
+
             x.gameObject.SetActive(true);
             x.transform.position = x.originalPosition;
             x.transform.eulerAngles = Vector3.zero;
