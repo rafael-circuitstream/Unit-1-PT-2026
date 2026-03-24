@@ -1,14 +1,15 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
     public void LoadMainMenu()
     {
-        
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void LoadGameplay()
     {
-        Debug.Log("Loading another scene");
+        SceneManager.LoadScene("Gameplay");
     }
 }

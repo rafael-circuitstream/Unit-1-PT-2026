@@ -7,7 +7,7 @@ public class FirstCode : MonoBehaviour
     public GameObject arrow;
     public int throwForce;
     public bool isThrown;
-
+    public AudioSource rollingBallSound;
     void Start()
     {
         
@@ -16,7 +16,6 @@ public class FirstCode : MonoBehaviour
 
     void Update()
     {
-
         if (isThrown)
         {
             return;
@@ -29,6 +28,7 @@ public class FirstCode : MonoBehaviour
             arrow.SetActive(false);        
             ballRigidbody.AddForce( arrow.transform.forward * throwForce );
             Invoke("EndThrow", 20);
+            rollingBallSound.Play();
         }
 
         if ( ballTransform.position.x > -0.45f)
